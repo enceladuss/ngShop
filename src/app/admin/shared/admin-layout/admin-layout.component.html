@@ -1,0 +1,26 @@
+<header class="header">
+  <a class="logo-link" routerLink="/">ngShop</a>
+
+  <nav>
+    <ul *ngIf="auth.isAuthenticated()">
+      <li routerLinkActive="active">
+        <a routerLink="/admin/dashboard">Dashboard</a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/admin/add">Add product</a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/admin/orders">Orders</a>
+      </li>
+      <li>
+        <a href="#" (click)="logOutClick($event)">Logout</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+
+<section class="container">
+  <router-outlet></router-outlet>
+</section>
+

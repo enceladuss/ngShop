@@ -1,0 +1,77 @@
+<div *ngIf="form">
+  <form [formGroup]="form" (ngSubmit)="submit()" class="admin-login-form">
+    <h2 class="text-center">Edit product</h2>
+
+
+    <div class="product-added-info alert" [ngClass]="{hidden: !showSuccessAlert}">
+      <p>Product with id {{ product.id }} was successfully edited!</p>
+    </div>
+
+    <div class="form-control">
+      <label for="type">Product Type</label>
+      <select id="type" formControlName="type">
+        <option value="Phone">Phone</option>
+        <option value="Tablet">Tablet</option>
+        <option value="LapTop">LapTop</option>
+      </select>
+      <div *ngIf="form.get('type').touched && form.get('type').invalid" class="validation">
+        <small *ngIf="form.get('type').errors.required">Enter product type</small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label for="title">Product Title</label>
+      <input id="title" type="text" formControlName="title">
+      <div *ngIf="form.get('title').touched && form.get('title').invalid" class="validation">
+        <small *ngIf="form.get('title').errors.required">Enter product title</small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label>Product Photo</label>
+      <!--    <quill-editor formControlName="photo"></quill-editor>-->
+      <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+        <ngx-dropzone-label>
+          <div class="dropzone-text">
+            <span>Drop product photos here</span>
+          </div>
+        </ngx-dropzone-label>
+        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"
+                                    [removable]="true" (removed)="onRemove(f)">
+          <!--        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>-->
+        </ngx-dropzone-image-preview>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label for="type">Product Information</label>
+      <quill-editor formControlName="info"></quill-editor>
+    </div>
+
+    <div class="form-control">
+      <label for="price">Product Price</label>
+      <input id="price" type="text" formControlName="price" (keypress)="numberOnly($event)">
+      <div *ngIf="form.get('price').touched && form.get('price').invalid" class="validation">
+        <small *ngIf="form.get('price').errors.required">Enter product price</small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label for="sold">Product interest index (or product sold count)</label>
+      <input id="sold" type="text" formControlName="sold" (keypress)="numberOnly($event)">
+      <div *ngIf="form.get('sold').touched && form.get('sold').invalid" class="validation">
+        <small *ngIf="form.get('sold').errors.required">Enter sold count</small>
+      </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid || submitted">Save Changes</button>
+
+  </form>
+</div>
+
+<div class="error-text-wrap" *ngIf="noProduct">
+  <span>The product you're looking for is not existing, or was deleted.</span>
+  <a routerLink="/admin/dashboard" class="btn btn-primary">Dashboard</a>
+</div>
+

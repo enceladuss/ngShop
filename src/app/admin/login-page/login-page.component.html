@@ -1,0 +1,31 @@
+<form [formGroup]="form" (ngSubmit)="loginSubmit()" class="admin-login-form">
+  <h2>Login as administrator</h2>
+
+  <div class="alert alert-danger" *ngIf="auth.error$ | async as error">
+    {{ error }}
+  </div>
+
+  <div class="form-control">
+    <label for="email">Email</label>
+    <input id="email" type="email" formControlName="email">
+    <div *ngIf="form.get('email').touched && form.get('email').invalid" class="validation">
+      <small *ngIf="form.get('email').errors.required">Enter email</small>
+      <small *ngIf="form.get('email').errors.email">Enter valid email</small>
+    </div>
+  </div>
+
+  <div class="form-control">
+    <label for="password">Password</label>
+    <input id="password" type="password" formControlName="password">
+    <div *ngIf="form.get('password').touched && form.get('password').invalid" class="validation">
+      <small *ngIf="form.get('password').errors.required">Enter password</small>
+      <small *ngIf="form.get('password').errors.minlength">
+        This field must contain at least {{form.get('password').errors.minlength.requiredLength}} symbols.
+        {{form.get('password').errors.minlength.requiredLength - form.get('password').errors.minlength.actualLength}} more symbols is required
+      </small>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="form.invalid || submitted">Log in</button>
+
+</form>

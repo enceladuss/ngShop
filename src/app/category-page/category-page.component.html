@@ -1,0 +1,37 @@
+<section class="category-page">
+
+  <div class="container category-head-wrap">
+
+    <h1>Category: {{category}}</h1>
+
+    <div *ngIf="!noProducts" class="category-filter-wrap">
+      <div class="form-control search-control">
+        <input type="text" placeholder="Find a product" [(ngModel)]="productName">
+      </div>
+
+      <div class="form-control">
+        <select (change)="selectChange($event.target.value)">
+          <option value="popular">Popular</option>
+          <option value="newest">Newest</option>
+          <option value="lowPrice">Price: Low to High</option>
+          <option value="highPrice">Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="container">
+
+    <div *ngIf="products" class="dashboard">
+      <app-product *ngFor="let product of products | productSearch : productName : noProducts" class="product-card" [product]="product"></app-product>
+    </div>
+
+    <div class="no-products text-center" *ngIf="noProducts">
+      <span>There are no products in this category right now.</span>
+    </div>
+
+  </div>
+
+</section>
+

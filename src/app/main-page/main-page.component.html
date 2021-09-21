@@ -1,0 +1,37 @@
+<main class="container">
+
+  <section class="homepage-title text-center">
+    <span>
+      Welcome to <h1>ngShop</h1>
+    </span>
+  </section>
+
+  <section class="dashboard category-dashboard">
+    <a routerLink="/products/phones">
+      <div class="image">
+        <img src="assets/img/category-phones.jpg" >
+      </div>
+      <span>Phones</span>
+    </a>
+
+    <a routerLink="/products/tablets">
+      <div class="image">
+        <img src="assets/img/category-tablets.jpg" >
+      </div>
+      <span>Tablets</span>
+    </a>
+
+    <a routerLink="/products/laptops">
+      <div class="image">
+        <img src="assets/img/category-laptops.jpg" >
+      </div>
+      <span>Laptops</span>
+    </a>
+  </section>
+
+  <h2>Recently added products:</h2>
+
+  <section *ngIf="products$ | async as products" class="dashboard">
+    <app-product *ngFor="let product of products.reverse().slice(0, 4)" class="product-card" [product]="product"></app-product>
+  </section>
+</main>

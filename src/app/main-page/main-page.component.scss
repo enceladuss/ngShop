@@ -1,0 +1,139 @@
+.homepage-title {
+  margin-bottom: 10px;
+  span {
+    width: 100%;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      margin-left: 10px;
+    }
+  }
+}
+
+h2 {
+  margin-top: 20px;
+}
+
+.category-dashboard {
+  a:nth-child(3n) {
+    margin-right: 0;
+  }
+
+  a {
+    position: relative;
+    margin-right: 20px;
+    width: calc(100% / 3 - 14px);
+    overflow: hidden;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .image {
+      position: relative;
+      width: 100%;
+      min-height: 365px;
+      overflow: hidden;
+
+      img {
+        position: absolute;
+        width: 95%;
+        height: auto;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(1);
+        transition: 0.2s all ease-in;
+      }
+
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 0;
+      height: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 100%;
+      background: rgba(255, 255, 255, .2);
+      pointer-events: none;
+    }
+
+    span {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    &:hover {
+      .image {
+        img {
+          width: 100%;
+        }
+      }
+
+      &:after {
+        animation: intec-image-effect-circle 750ms;
+      }
+    }
+  }
+}
+
+@keyframes intec-image-effect-circle {
+  0% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    width: 200%;
+    height: 200%;
+    opacity: 0;
+  }
+}
+
+@media (max-width: 992px) {
+  .category-dashboard {
+    a {
+      margin-right: 10px;
+      width: calc(100% / 3 - 7px);
+
+      .image {
+        min-height: 280px;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .category-dashboard {
+    flex-direction: column;
+    align-items: center;
+    a {
+      width: 100%;
+      max-width: 320px;
+      margin-right: 0;
+      margin-bottom: 20px;
+
+      .image {
+        height: auto;
+        min-height: auto;
+        position: static;
+        transform: none;
+
+        img {
+          position: static;
+          transform: none;
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+  }
+}
