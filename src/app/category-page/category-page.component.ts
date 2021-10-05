@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ProductService} from '../shared/product.service';
 import {ActivatedRoute} from '@angular/router';
 
@@ -13,6 +13,7 @@ export class CategoryPageComponent implements OnInit {
   category;
   noProducts = false;
   productName: string;
+  @ViewChild('loader') loader: ElementRef;
 
   constructor(
     private productService: ProductService,
@@ -47,6 +48,7 @@ export class CategoryPageComponent implements OnInit {
   }
 
   selectChange(value: any): void {
+    this.loader.nativeElement.classList.add('active-loader');
     switch (value) {
       case 'popular':
         this.products = this.products.sort((a, b) => a.sold > b.sold ? -1 : 1);
@@ -63,5 +65,8 @@ export class CategoryPageComponent implements OnInit {
       default :
         console.log('Filter setting not found');
     }
+    setTimeout(() => {
+      this.loader.nativeElement.classList.remove('active-loader');
+    }, 850);
   }
 }

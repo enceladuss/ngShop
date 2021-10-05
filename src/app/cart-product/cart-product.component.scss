@@ -1,0 +1,162 @@
+.order-item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .order-item-col:first-child {
+    justify-content: flex-start;
+  }
+
+  .order-item-col:last-child {
+    justify-content: flex-end;
+  }
+}
+
+.order-item-col {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  img {
+    max-width: 120px;
+  }
+
+  a {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  span {
+    font-size: 24px;
+  }
+}
+
+.order-item-quantity-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  input {
+    width: 56px;
+    height: 40px;
+    padding: 0 12px;
+    margin: 0 4px;
+    border: 1px solid #d2d2d2;
+    border-radius: 0.5rem;
+    text-align: center;
+  }
+}
+
+.order-item-quantity-control {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: 0.2s all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.order-item-quantity-control:disabled {
+  cursor: auto;
+  opacity: 0.3;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.delete-btn {
+  height: 40px;
+  padding: 0.2rem 0rem 0.2rem 1.3rem;
+  border: none;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s all;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 13px;
+    path {
+      transition: 0.2s all;
+    }
+  }
+
+  span {
+    font-size: 16px;
+    transition: 0.2s all;
+  }
+
+  &:hover {
+    color: #ff7878;
+    svg {
+      path {
+        fill: #ff7878;
+      }
+    }
+
+    span {
+      color: #ff7878;
+    }
+  }
+}
+
+@media (max-width: 680px) {
+  .order-item {
+    margin-bottom: 10px;
+    position: relative;
+    flex-wrap: wrap;
+
+    .order-item-col:nth-child(1) {
+      width: 100%;
+      padding: 0 45px;
+      justify-content: center;
+      img {
+        max-width: 130px;
+      }
+    }
+
+    .order-item-col:nth-child(2) {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    .order-item-col:nth-child(3), .order-item-col:nth-child(4) {
+      width: 50%;
+    }
+
+    .order-item-col:nth-child(5) {
+      position: absolute;
+      top: 0;
+      right: 0;
+      .delete-btn {
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+
+}
+

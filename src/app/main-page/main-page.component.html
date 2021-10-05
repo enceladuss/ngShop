@@ -1,4 +1,4 @@
-<main class="container">
+<section class="container">
 
   <section class="homepage-title text-center">
     <span>
@@ -34,4 +34,4 @@
   <section *ngIf="products$ | async as products" class="dashboard">
     <app-product *ngFor="let product of products.reverse().slice(0, 4)" class="product-card" [product]="product"></app-product>
   </section>
-</main>
+</section>

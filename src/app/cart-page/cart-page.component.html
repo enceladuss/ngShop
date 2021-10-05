@@ -1,3 +1,17 @@
-<div class="container">
-  <p>cart-page works!</p>
+<div class="cart-page">
+  <section class="container">
+    <div class="order-list" *ngIf="cartProducts.length">
+      <app-cart-product *ngFor="let cartProduct of cartProducts; let i = index"  [product]="cartProduct" (calculatePrice)="calculatePrice()" (deleteProduct)="deletedProduct($event)"></app-cart-product>
+    </div>
+  </section>
+
+  <section class="container cart-bottom">
+    <a routerLink="/">Continue shopping</a>
+
+    <div class="cart-total-wrap">
+      <span>{{totalPrice}} $</span>
+      <a routerLink="/cart" class="btn btn-success">Checkout</a>
+    </div>
+
+  </section>
 </div>

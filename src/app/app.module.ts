@@ -15,6 +15,7 @@ import { ProductComponent } from './product/product.component';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { ProductSearchPipe } from './shared/productSearch.pipe';
 import {FormsModule} from '@angular/forms';
+import { CartProductComponent } from './cart-product/cart-product.component';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import {FormsModule} from '@angular/forms';
         NotFoundPageComponent,
         ProductComponent,
         CategoryPageComponent,
-        ProductSearchPipe
+        ProductSearchPipe,
+        CartProductComponent
     ],
   imports: [
     BrowserModule,

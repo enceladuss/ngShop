@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../shared/product.service';
 import {ActivatedRoute} from '@angular/router';
 import {catchError, switchMap} from 'rxjs/operators';
+import {CartService} from '../shared/cart.service';
 
 @Component({
   selector: 'app-product-page',
@@ -16,6 +17,7 @@ export class ProductPageComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
+    private cartService: CartService,
     private route: ActivatedRoute
   ) {
   }
@@ -46,4 +48,7 @@ export class ProductPageComponent implements OnInit {
 
   }
 
+  addToCart(product) {
+    this.cartService.addProductToCart(product);
+  }
 }

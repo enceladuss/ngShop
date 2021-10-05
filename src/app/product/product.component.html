@@ -12,7 +12,7 @@
 <div class="product-title-price">
   <p>{{product.price}} <span>$</span></p>
 
-  <button class="btn">
+  <button class="btn" (click)="addToCart(product)">
     <svg width="24px" height="24px" viewBox="0 0 24 24" id="icon-basket">
       <g>
         <path fill-rule="evenodd" clip-rule="evenodd"
