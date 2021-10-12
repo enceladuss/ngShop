@@ -1,5 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Product} from './interfaces';
+import {FbResponse, Product} from './interfaces';
+import {Subject} from 'rxjs';
+import {environment} from '../../environments/environment';
+import {map} from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +11,27 @@ import {Product} from './interfaces';
 export class CartService {
 
   cartProducts: Product[] = JSON.parse(localStorage.getItem('cartProducts')) || [];
+  cartProductQuantity = 0;
 
-  constructor() {
+  constructor(public http: HttpClient) {
+  }
+
+  private componentMethodCallSource = new Subject<any>();
+
+  componentMethodCalled$ = this.componentMethodCallSource.asObservable();
+
+  updateCartProductQuantity(): void {
+    const quantityArr = [];
+    for (let i = 0; i < this.cartProducts.length; i++) {
+      if (parseInt(this.cartProducts[i].quantity)) {
+        quantityArr.push(parseInt(this.cartProducts[i].quantity));
+      } else {
+        quantityArr.push(1);
+      }
+    }
+
+    this.cartProductQuantity = quantityArr.reduce((sum, current) => sum + current, 0);
+    this.componentMethodCallSource.next(this.cartProductQuantity);
   }
 
   getAll(): Product[] {
@@ -17,6 +40,8 @@ export class CartService {
     } else {
       return null;
     }
+
+    this.updateCartProductQuantity();
   }
 
   addProductToCart(product): void {
@@ -28,16 +53,12 @@ export class CartService {
       const duplicatedProduct = this.cartProducts.find(item => item.id === product.id);
 
       if (duplicatedProduct) {
-
         this.cartProducts = this.cartProducts.map(item => {
-
           if (item.id === duplicatedProduct.id) {
-
             return {
               ...item,
               quantity: parseInt(item.quantity) + 1 || 2
             };
-
           } else {
             return item;
           }
@@ -54,6 +75,8 @@ export class CartService {
       localStorage.setItem('cartProducts', JSON.stringify(this.cartProducts));
 
     }
+
+    this.updateCartProductQuantity();
   }
 
   removeProductFromCart(deletedProduct): void {
@@ -66,6 +89,8 @@ export class CartService {
     } else {
       console.log('No products in cart');
     }
+
+    this.updateCartProductQuantity();
   }
 
   cartProductQuantityChange(product, newQuantity): void {
@@ -87,5 +112,18 @@ export class CartService {
     } else {
       console.log('No products in cart');
     }
+
+    this.updateCartProductQuantity();
+  }
+
+  createOrder(order) {
+    return this.http.post(`${environment.fbDbUrl}/orders.json`, order).pipe(map((res: FbResponse) => {
+        return {
+          ...order,
+          id: res.name,
+          date: new Date(order.date)
+        };
+      })
+    );
   }
 }

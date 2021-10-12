@@ -1,0 +1,102 @@
+<div class="checkout-page">
+  <section class="container">
+    <h1>Order checkout</h1>
+  </section>
+
+
+
+
+  <section class="container checkout-order-customer-data">
+    <h2>Contact information:</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="checkout-order-form">
+
+      <div class="form-control">
+        <label for="name">Your name:</label>
+        <input id="name" type="text" formControlName="name">
+        <div *ngIf="form.get('name').touched && form.get('name').invalid" class="validation">
+          <small *ngIf="form.get('name').errors.required">Enter your name</small>
+        </div>
+      </div>
+
+      <div class="form-control">
+        <label for="phone">Phone number:</label>
+        <input id="phone" type="text" formControlName="phone">
+        <div *ngIf="form.get('phone').touched && form.get('phone').invalid" class="validation">
+          <small *ngIf="form.get('phone').errors.required">Enter phone number</small>
+        </div>
+      </div>
+
+      <div class="form-control">
+        <label for="city">City:</label>
+        <input id="city" type="text" formControlName="city">
+        <div *ngIf="form.get('city').touched && form.get('city').invalid" class="validation">
+          <small *ngIf="form.get('city').errors.required">Enter city name</small>
+        </div>
+      </div>
+
+      <div class="form-control">
+        <label for="address">Address:</label>
+        <input id="address" type="text" formControlName="address">
+        <div *ngIf="form.get('address').touched && form.get('address').invalid" class="validation">
+          <small *ngIf="form.get('address').errors.required">Enter address</small>
+        </div>
+      </div>
+
+      <div class="checkout-order-list-head">
+        <h2>Your order: {{ productsQuantity }} products, with total cost {{totalPrice}}$ </h2>
+
+        <a routerLink="/cart">Edit order
+          <svg viewBox="0 0 24 24" id="icon-edit">
+            <g>
+              <path d="m20.2071 5.20711 1.5-1.5c.3905-.39053.3905-1.02369 0-1.41422-.3905-.39052-1.0237-.39052-1.4142 0l-1.5 1.5z"></path>
+              <path d="m2 4c0-1.10457.89543-2 2-2h8.4895c.5523 0 1 .44772 1 1s-.4477 1-1 1h-8.4895v16h16v-8.4895c0-.5523.4477-1 1-1s1 .4477 1 1v8.4895c0 1.1046-.8954 2-2 2h-16c-1.10457 0-2-.8954-2-2z"></path>
+              <path d="m8.29289 14.2929 9.50001-9.50001 1.4142 1.41422-9.49999 9.49999c-.39053.3905-1.02369.3905-1.41422 0-.39052-.3905-.39052-1.0237 0-1.4142z"></path>
+            </g>
+          </svg>
+        </a>
+      </div>
+
+      <div class="checkout-order-list">
+
+        <div class="checkout-order-item" *ngFor="let orderProduct of orderProducts; let i = index" >
+
+          <a routerLink="/product/{{orderProduct.id}}" target="_blank" class="checkout-order-title">
+            <span class="checkout-order-image-wrap">
+              <img src="{{orderProduct.photo || 'assets/img/no-image-icon-res.png'}}">
+            </span>
+
+            <span class="checkout-order-title">{{orderProduct.title}}</span>
+          </a>
+
+          <div class="checkout-order-item-info">
+
+            <div class="checkout-order-col">
+              <span class="checkout-order-col-head">Price</span>
+              <span class="checkout-order-col-digit checkout-order-col-price">{{orderProduct.price}}</span>
+            </div>
+
+            <div class="checkout-order-col">
+              <span class="checkout-order-col-head">Quantity</span>
+              <span class="checkout-order-col-digit checkout-order-col-price">{{orderProduct.quantity || 1}}</span>
+            </div>
+
+            <div class="checkout-order-col">
+              <span class="checkout-order-col-head">Total</span>
+              <span class="checkout-order-col-digit checkout-order-col-price">{{orderProduct.price * orderProduct.quantity}}</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="form-btn-wrap">
+        <button type="submit" class="btn success-btn" [disabled]="form.invalid || submitted">Confirm order</button>
+      </div>
+
+    </form>
+  </section>
+
+</div>

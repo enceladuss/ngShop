@@ -1,17 +1,26 @@
 <div class="cart-page">
-  <section class="container">
-    <div class="order-list" *ngIf="cartProducts.length">
-      <app-cart-product *ngFor="let cartProduct of cartProducts; let i = index"  [product]="cartProduct" (calculatePrice)="calculatePrice()" (deleteProduct)="deletedProduct($event)"></app-cart-product>
-    </div>
-  </section>
 
-  <section class="container cart-bottom">
-    <a routerLink="/">Continue shopping</a>
+  <div class="cart-page-wrap" *ngIf="cartProducts.length">
+    <section class="container">
+      <div class="order-list">
+        <app-cart-product *ngFor="let cartProduct of cartProducts; let i = index"  [product]="cartProduct" (calculatePrice)="calculatePrice()" (deleteProduct)="deletedProduct($event)"></app-cart-product>
+      </div>
+    </section>
 
-    <div class="cart-total-wrap">
-      <span>{{totalPrice}} $</span>
-      <a routerLink="/cart" class="btn btn-success">Checkout</a>
-    </div>
+    <section class="container cart-bottom">
+      <a routerLink="/">Continue shopping</a>
 
-  </section>
+      <div class="cart-total-wrap">
+        <span>{{totalPrice}} $</span>
+        <a routerLink="/checkout" class="btn btn-success">Checkout</a>
+      </div>
+    </section>
+  </div>
+
+  <div class="container error-text-wrap" *ngIf="noCartProducts || !cartProducts.length">
+    <span>Your cart is empty, but you can fix it anytime :)</span>
+    <img src="assets/img/cart-dummy.svg">
+    <a routerLink="/" class="btn btn-primary">Main page</a>
+  </div>
 </div>
+

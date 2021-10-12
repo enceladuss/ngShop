@@ -1,5 +1,5 @@
-<section class="product-page" *ngIf="product">
-  <div class="product">
+<div class="product-page">
+  <section class="product" *ngIf="product">
 
     <nav class="product-breadcrumbs">
       <ul>
@@ -75,10 +75,12 @@
 
     </div>
 
-  </div>
-</section>
+  </section>
 
-<div class="error-text-wrap" *ngIf="noProduct">
-  <span>The product you're looking for is not existing, or was deleted by an administrator.</span>
-  <a routerLink="/" class="btn btn-primary">Main page</a>
+  <section class="container error-text-wrap" *ngIf="noProduct">
+    <span>The product you're looking for is not existing, or was deleted by an administrator.</span>
+    <img src="assets/img/404cat.png">
+    <a routerLink="/" class="btn btn-primary">Main page</a>
+  </section>
 </div>
+

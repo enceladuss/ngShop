@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CartService} from '../cart.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainLayoutComponent implements OnInit {
 
-  constructor() { }
+  cartProductsQuantity = 0;
+
+  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
+
+    setTimeout(() => {
+      this.cartService.updateCartProductQuantity();
+    }, 1)
+    this.cartService.updateCartProductQuantity();
+
+    this.cartService.componentMethodCalled$.subscribe((cartProductsQuantity) => {
+      this.cartProductsQuantity = cartProductsQuantity;
+    });
   }
 
 }

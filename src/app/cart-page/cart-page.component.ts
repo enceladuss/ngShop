@@ -1,8 +1,6 @@
 /* tslint:disable:radix */
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ProductService} from '../shared/product.service';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {Product} from '../shared/interfaces';
-import {CartProductComponent} from '../cart-product/cart-product.component';
 import {CartService} from '../shared/cart.service';
 
 @Component({
@@ -13,8 +11,7 @@ import {CartService} from '../shared/cart.service';
 export class CartPageComponent implements OnInit {
   cartProducts: Product[] = [];
   totalPrice = 0;
-
-  // quantityValue = 1;
+  noCartProducts = false;
 
   constructor(
     private cartService: CartService,
@@ -23,14 +20,18 @@ export class CartPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.cartProducts = this.cartService.getAll();
-
+    if (this.cartService.getAll()) {
+      this.cartProducts = this.cartService.getAll();
+    } else {
+      this.noCartProducts = true;
+    }
   }
 
   // TODO: ASK ABOUT ERROR
   ngAfterViewInit(): void {
-    this.calculatePrice();
+    if (this.cartProducts) {
+      this.calculatePrice();
+    }
   }
 
   calculatePrice(): void {
@@ -48,9 +49,14 @@ export class CartPageComponent implements OnInit {
 
     $event.deletedElement.nativeElement.remove();
     this.cartService.removeProductFromCart($event.deletedProduct);
+    this.cartProducts = this.cartService.getAll();
     setTimeout(() => {
       this.calculatePrice();
     }, 1);
+
+    if(!this.cartProducts.length) {
+      this.noCartProducts = true;
+    }
 
   }
 }

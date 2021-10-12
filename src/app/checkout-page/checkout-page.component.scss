@@ -1,0 +1,139 @@
+.checkout-page {
+  h1 {
+    margin-bottom: 20px;
+  }
+}
+
+.checkout-order-form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  .form-control {
+    width: 100%;
+    max-width: calc(50% - 15px);
+  }
+
+  .form-control:nth-child(2n) {
+    margin-left: 30px;
+  }
+
+  .success-btn {
+    margin-right: 0;
+    min-height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+  }
+}
+
+.form-btn-wrap {
+  width: 100%;
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.checkout-order-list-head {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+
+  a {
+    display: flex;
+    align-items: center;
+  }
+
+
+  svg {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+  }
+}
+
+.checkout-order-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkout-order-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.checkout-order-title {
+  width: 45%;
+  display: flex;
+  align-items: center;
+}
+
+.checkout-order-image-wrap {
+  width: 56px;
+  height: 56px;
+  margin-right: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.checkout-order-title {
+  font-size: 15px;
+  line-height: 19px;
+}
+
+.checkout-order-item-info {
+  width: 55%;
+  display: flex;
+}
+
+.checkout-order-col {
+  width: 33.3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 576px) {
+
+  .checkout-order-form {
+    flex-direction: column;
+
+    .form-control {
+      max-width: 100%;
+    }
+
+    .form-control:nth-child(2n) {
+      margin-left: 0;
+    }
+  }
+
+  .checkout-order-item {
+    flex-wrap: wrap;
+  }
+
+  .checkout-order-title {
+    width: 100%;
+    //justify-content: center;
+  }
+
+  .checkout-order-item-info {
+    width: 100%;
+  }
+
+  .form-btn-wrap {
+    justify-content: center;
+  }
+
+
+}

@@ -27,6 +27,8 @@
             <circle fill="#fff" cx="31.5" cy="34" r="3"></circle>
           </svg>
         </a>
+
+        <span class="counter" *ngIf="cartProductsQuantity"> {{cartProductsQuantity}} </span>
       </li>
 
     </ul>
@@ -66,6 +68,7 @@
             <circle fill="#fff" cx="31.5" cy="34" r="3"></circle>
           </svg>
         </a>
+        <span class="counter" *ngIf="cartProductsQuantity"> {{cartProductsQuantity}} </span>
       </li>
     </ul>
 
@@ -74,6 +77,10 @@
 </header>
 
 <main>
+
+  <div class="modal-bg"></div>
+  <div class="modal"></div>
+
   <router-outlet></router-outlet>
 </main>
 

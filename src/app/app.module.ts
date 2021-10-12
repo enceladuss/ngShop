@@ -14,8 +14,9 @@ import {AuthInterceptor} from './shared/auth.interceptor';
 import { ProductComponent } from './product/product.component';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { ProductSearchPipe } from './shared/productSearch.pipe';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CartProductComponent } from './cart-product/cart-product.component';
+import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 
 @NgModule({
     declarations: [
@@ -28,15 +29,17 @@ import { CartProductComponent } from './cart-product/cart-product.component';
         ProductComponent,
         CategoryPageComponent,
         ProductSearchPipe,
-        CartProductComponent
+        CartProductComponent,
+        CheckoutPageComponent
     ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    QuillModule.forRoot(),
-    FormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        QuillModule.forRoot(),
+        FormsModule,
+        ReactiveFormsModule,
+    ],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,
