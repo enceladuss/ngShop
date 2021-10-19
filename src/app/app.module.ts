@@ -17,6 +17,7 @@ import { ProductSearchPipe } from './shared/productSearch.pipe';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CartProductComponent } from './cart-product/cart-product.component';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
+import { OrderGratitudeComponent } from './order-gratitude/order-gratitude.component';
 
 @NgModule({
     declarations: [
@@ -30,7 +31,8 @@ import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
         CategoryPageComponent,
         ProductSearchPipe,
         CartProductComponent,
-        CheckoutPageComponent
+        CheckoutPageComponent,
+        OrderGratitudeComponent
     ],
     imports: [
         BrowserModule,

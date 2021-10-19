@@ -1,0 +1,24 @@
+.orders-section {
+  table {
+    tr {
+      border: 1px solid var(--primary-color);
+
+      button {
+        margin-right: 0;
+      }
+
+      td {
+        span {
+          display: block;
+          margin-bottom: 5px;
+        }
+
+        span:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      td:nth-child(2) { width: 100px ;}
+    }
+  }
+}

@@ -78,8 +78,25 @@
 
 <main>
 
-  <div class="modal-bg"></div>
-  <div class="modal"></div>
+  <div class="modal-bg added-to-cart-bg close-modal"></div>
+  <div class="modal added-to-cart-modal">
+    <button class="modal-close-btn close-modal">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.8501 10.0013L19.0719 18.2229L18.2234 19.0714L10.0016 10.8498L1.77897 19.0722L0.930454 18.2237L9.15304 10.0013L0.929291 1.77783L1.77781 0.929288L10.0016 9.15281L18.2246 0.93005L19.0731 1.77859L10.8501 10.0013Z" fill="#343434"/>
+      </svg>
+    </button>
+
+    <div class="modal-wrap">
+      <div class="modal-head">
+        Product has been added to the cart!
+      </div>
+
+      <p>You can proceed to checkout, or continue shopping.</p>
+
+      <button routerLink="/cart" class="btn success-btn close-modal">Go to cart</button>
+      <button class="btn link-button close-modal">Continue shopping</button>
+    </div>
+  </div>
 
   <router-outlet></router-outlet>
 </main>

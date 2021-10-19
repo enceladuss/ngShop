@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {FbResponse, Product} from './interfaces';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
@@ -116,8 +116,26 @@ export class CartService {
     this.updateCartProductQuantity();
   }
 
+  clearCart() {
+    if (JSON.parse(localStorage.getItem('cartProducts'))) {
+      localStorage.removeItem('cartProducts');
+      this.cartProducts = [];
+      this.updateCartProductQuantity();
+    } else {
+      console.log('No products in cart');
+    }
+    ;
+
+    if (localStorage.getItem('recentOrderId')) {
+      localStorage.removeItem('recentOrderId');
+    }
+  }
+
   createOrder(order) {
     return this.http.post(`${environment.fbDbUrl}/orders.json`, order).pipe(map((res: FbResponse) => {
+        console.log(JSON.stringify(res.name));
+        localStorage.setItem('recentOrderId', JSON.stringify(res.name));
+        console.log(localStorage.getItem('recentOrderId'));
         return {
           ...order,
           id: res.name,
@@ -126,4 +144,22 @@ export class CartService {
       })
     );
   }
+
+  getAllOrders(): any {
+    return this.http.get(`${environment.fbDbUrl}/orders.json`)
+      .pipe(map(res => {
+          return Object.keys(res)
+            .map(key => ({
+              ...res[key],
+              id: key,
+              date: new Date(res[key].date)
+            }));
+        })
+      );
+  }
+
+  removeOrder(id) {
+    return this.http.delete(`${environment.fbDbUrl}/orders/${id}.json`);
+  }
+
 }

@@ -45,6 +45,7 @@ export class CartProductComponent implements OnInit {
       this.cartService.cartProductQuantityChange(this.product, this.quantity);
       this.calculatePrice.emit();
     }, 1);
+
   }
 
 }

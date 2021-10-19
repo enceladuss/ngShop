@@ -9,7 +9,6 @@ import {Subscription} from 'rxjs';
 })
 export class DashboardPageComponent implements OnInit {
 
-
   products = [];
   pSub: Subscription;
   rSub: Subscription;

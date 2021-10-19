@@ -8,6 +8,7 @@ import {CartPageComponent} from './cart-page/cart-page.component';
 import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
 import {CategoryPageComponent} from './category-page/category-page.component';
 import {CheckoutPageComponent} from './checkout-page/checkout-page.component';
+import {OrderGratitudeComponent} from './order-gratitude/order-gratitude.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
       {path: 'products/:id', component: CategoryPageComponent},
       {path: 'cart', component: CartPageComponent},
       {path: 'checkout', component: CheckoutPageComponent},
+      {path: 'order-gratitude', component: OrderGratitudeComponent},
       {path: '**', component: NotFoundPageComponent}
     ]
   }

@@ -1,3 +1,53 @@
-<div class="container">
-  <p>orders-page works!</p>
-</div>
+<h1>Orders</h1>
+
+<section class="orders-section">
+  <div class="form-control">
+    <input type="text" placeholder="Find a order" [(ngModel)]="productName">
+  </div>
+  <div class="table-wrap" *ngIf="orders.length; else noOrders">
+    <table>
+      <thead>
+      <tr>
+        <th>#</th>
+        <th style="width: 100px">Order id</th>
+        <th>Client Name</th>
+        <th style="width: 150px">Client Number</th>
+        <th>Client Address</th>
+        <th>Order Products</th>
+        <th>Total Price</th>
+        <th style="width: 100px">Date & time</th>
+        <th style="width: 50px">Delete</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let order of orders | search : productName; let idx = index">
+        <td>{{ idx + 1 }}</td>
+        <td>{{order.id}}</td>
+        <td>{{ order.name }}</td>
+        <td>{{ order.phone }}</td>
+        <td>{{ order.city + ' ' + order.address }}</td>
+        <td>
+          <span *ngFor="let product of order.orderProducts">
+            {{product.title + ' - ' + product.quantity + 'pcs x ' + product.price + '$ '}}
+          </span>
+        </td>
+        <td>{{ order.orderTotalPrice || '-' }}</td>
+        <td>{{ order.date | date:'dd.MM.yyyy HH:mm' }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="remove(order.id)">
+            Delete
+          </button>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<ng-template #noOrders>
+  <div class="error-text-wrap">
+    <span>There are no orders currently.</span>
+  </div>
+</ng-template>

@@ -45,7 +45,7 @@ export class CheckoutPageComponent implements OnInit {
 
           if (parseInt(this.orderProducts[i].price)) {
             this.pricesArr.push(parseInt(this.orderProducts[i].price) * parseInt(this.orderProducts[i].quantity) || 1);
-          }else {
+          } else {
             this.pricesArr.push(1);
           }
         }
@@ -74,19 +74,15 @@ export class CheckoutPageComponent implements OnInit {
       city: this.form.value.city,
       address: this.form.value.address,
       orderProducts: this.orderProducts,
+      orderTotalPrice: this.totalPrice,
       date: new Date(),
     };
 
-    this.submitted = false;
-    console.log(order);
     this.cartService.createOrder(order)
       .subscribe((res) => {
+        this.submitted = false;
         this.form.reset();
-        // this.productID = res.id;
-        console.log(res)
-        setTimeout(() => {
-          // this.productID = '';
-        }, 5000);
+        this.router.navigate(['/order-gratitude']);
       });
   }
 }
