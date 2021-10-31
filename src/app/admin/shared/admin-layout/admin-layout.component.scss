@@ -1,0 +1,23 @@
+.desktop-nav {
+  display: flex;
+}
+
+.mobile-nav {
+  display: none;
+}
+
+.mobile-categories {
+  min-width: 120px;
+}
+
+@media (max-width: 576px) {
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: flex;
+  }
+
+}

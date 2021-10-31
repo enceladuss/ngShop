@@ -17,10 +17,10 @@ export class AdminLayoutComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  logOutClick($event: Event) {
+  logOutClick($event: Event): void {
     event.preventDefault();
     this.auth.logout();
-    this.router.navigate(['/admin', 'login'])
+    this.router.navigate(['/admin', 'login']);
   }
 }
 

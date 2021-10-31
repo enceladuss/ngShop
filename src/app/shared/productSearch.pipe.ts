@@ -6,23 +6,15 @@ import {Product} from './interfaces';
 })
 export class ProductSearchPipe implements PipeTransform {
 
-  transform(products: Product[], productName = '', noProduct = false): any {
+  transform(products: Product[], productName = ''): any {
 
     if (!productName.trim()) {
       return products;
     }
 
-    const filteredProducts = products.filter((product) => {
+    return products.filter((product) => {
       return product.title.toLowerCase().includes(productName.toLowerCase());
     });
-
-    if (!filteredProducts.length) {
-      noProduct = true;
-      return null;
-    }
-
-    return filteredProducts;
-
   }
 
 }

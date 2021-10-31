@@ -60,7 +60,7 @@
 
           <a routerLink="/product/{{orderProduct.id}}" target="_blank" class="checkout-order-title">
             <span class="checkout-order-image-wrap">
-              <img src="{{orderProduct.photo || 'assets/img/no-image-icon-res.png'}}">
+              <img src="{{orderProduct.photo.length ? orderProduct.photo[0].content : 'assets/img/no-image-icon-res.png'}}">
             </span>
 
             <span class="checkout-order-title">{{orderProduct.title}}</span>

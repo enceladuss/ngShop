@@ -4,8 +4,8 @@
   <div class="form-control">
     <input type="text" placeholder="Find a order" [(ngModel)]="productName">
   </div>
-  <div class="table-wrap" *ngIf="orders.length; else noOrders">
-    <table>
+  <div class="table-wrap" *ngIf="(orders | search : productName ) as result">
+    <table *ngIf="result.length">
       <thead>
       <tr>
         <th>#</th>
@@ -21,7 +21,7 @@
       </thead>
 
       <tbody>
-      <tr *ngFor="let order of orders | search : productName; let idx = index">
+      <tr *ngFor="let order of result; let idx = index">
         <td>{{ idx + 1 }}</td>
         <td>{{order.id}}</td>
         <td>{{ order.name }}</td>
@@ -39,15 +39,17 @@
             Delete
           </button>
         </td>
-
       </tr>
       </tbody>
     </table>
+
+    <div class="search-no-results" *ngIf="!result.length">
+      <span>No orders was found.</span>
+      Try to change your search query.
+    </div>
   </div>
 </section>
 
-<ng-template #noOrders>
-  <div class="error-text-wrap">
-    <span>There are no orders currently.</span>
-  </div>
-</ng-template>
+<div class="error-text-wrap" *ngIf="noOrders">
+  <span>There are no orders currently.</span>
+</div>

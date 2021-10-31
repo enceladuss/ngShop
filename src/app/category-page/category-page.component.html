@@ -21,14 +21,25 @@
 
   </div>
 
-  <div class="container loader-parent" #loader>
+  <div class="container active-loader loader-parent" *ngIf="loading">
+    <div class="loader-wrap">
+      <img class="loader-svg" src='assets/img/loader.svg'>
+    </div>
+  </div>
+
+  <div class="container loader-parent" *ngIf="(products | productSearch : productName) as result" #loader>
 
     <div class="loader-wrap">
       <img class="loader-svg" src='assets/img/loader.svg'>
     </div>
 
-    <div *ngIf="products" class="dashboard">
-      <app-product *ngFor="let product of products | productSearch : productName : noProducts" class="product-card" [product]="product"></app-product>
+    <div class="dashboard" *ngIf="result.length">
+      <app-product *ngFor="let product of result" class="product-card" [product]="product"></app-product>
+    </div>
+
+    <div class="search-no-results" *ngIf="!result.length && !loading">
+      <span>No products was found.</span>
+      Try to change your search query.
     </div>
 
     <div class="no-products text-center" *ngIf="noProducts">

@@ -1,5 +1,5 @@
-<a routerLink="/product/{{product.id}}" class="flex-center">
-  <img src="{{product.photo || 'assets/img/no-image-icon-res.png'}}">
+<a routerLink="/product/{{product.id}}" class="product-image">
+  <img src="{{product.photo.length ? product.photo[0].content : 'assets/img/no-image-icon-res.png'}}">
 </a>
 
 <div class="product-title-wrap">

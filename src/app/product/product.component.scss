@@ -3,6 +3,18 @@
   text-align: left;
 }
 
+.product-image {
+  margin-bottom: 5px;
+  min-height: 305px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  img {
+    max-height: 305px;
+  }
+}
+
 .product-title {
   font-size: 14px;
   line-height: 16px;

@@ -1,4 +1,4 @@
-<section class="container">
+<div class="container">
 
   <section class="homepage-title text-center">
     <span>
@@ -31,7 +31,14 @@
 
   <h2>Recently added products:</h2>
 
-  <section *ngIf="products$ | async as products" class="dashboard">
-    <app-product *ngFor="let product of products.reverse().slice(0, 4)" class="product-card" [product]="product"></app-product>
+  <div class="container active-loader loader-parent" *ngIf="loading">
+    <div class="loader-wrap">
+      <img class="loader-svg" src='assets/img/loader.svg'>
+    </div>
+  </div>
+
+  <section *ngIf="latestProducts" class="dashboard">
+    <app-product *ngFor="let product of latestProducts" class="product-card" [product]="product"></app-product>
   </section>
-</section>
+
+</div>

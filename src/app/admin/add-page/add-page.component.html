@@ -7,7 +7,7 @@
   </div>
 
   <div class="form-control">
-    <label for="type">Product Type</label>
+    <label for="type">Product Type *</label>
     <select id="type"  formControlName="type">
       <option value="Phone">Phone</option>
       <option value="Tablet">Tablet</option>
@@ -19,7 +19,7 @@
   </div>
 
   <div class="form-control">
-    <label for="title">Product Title</label>
+    <label for="title">Product Title *</label>
     <input id="title" type="text" formControlName="title">
     <div *ngIf="form.get('title').touched && form.get('title').invalid" class="validation">
       <small *ngIf="form.get('title').errors.required">Enter product title</small>
@@ -36,18 +36,17 @@
         </div>
       </ngx-dropzone-label>
       <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
-<!--        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>-->
       </ngx-dropzone-image-preview>
     </div>
   </div>
 
   <div class="form-control">
-    <label for="type">Product Information</label>
+    <label for="type">Product Information *</label>
     <quill-editor formControlName="info"></quill-editor>
   </div>
 
   <div class="form-control">
-    <label for="price">Product Price</label>
+    <label for="price">Product Price *</label>
     <input id="price" type="text" formControlName="price" (keypress)="numberOnly($event)">
     <div *ngIf="form.get('price').touched && form.get('price').invalid" class="validation">
       <small *ngIf="form.get('price').errors.required">Enter product price</small>

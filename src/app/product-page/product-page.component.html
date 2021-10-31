@@ -1,4 +1,11 @@
 <div class="product-page">
+
+  <div class="container active-loader loader-parent" *ngIf="loading">
+    <div class="loader-wrap">
+      <img class="loader-svg" src='assets/img/loader.svg'>
+    </div>
+  </div>
+
   <section class="product" *ngIf="product">
 
     <nav class="product-breadcrumbs">
@@ -35,8 +42,18 @@
             <h1> {{ product.title }} </h1>
           </div>
 
-          <div class="flex-center product-photo">
-            <img src="{{product.photo || 'assets/img/no-image-icon-res.png'}}">
+          <div class="product-photo">
+            <div class="product-photo-slider keen-slider" *ngIf="product.photo" #sliderRef>
+              <!--              <div *ngFor="let photo of product.photo; let idx = index" class="product-photo-slider-item">-->
+              <!--                <img src="{{photo.content}}">-->
+              <!--              </div>-->
+
+              <div *ngFor="let photo of product.photo; let idx = index" class="product-photo-slider-item keen-slider__slide" >
+                <img src="{{photo.content}}">
+              </div>
+
+            </div>
+            <img *ngIf="!product.photo" src='assets/img/no-image-icon-res.png'>
           </div>
 
           <div class="product-title-price">

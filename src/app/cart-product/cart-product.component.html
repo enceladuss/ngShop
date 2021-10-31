@@ -2,7 +2,7 @@
 
   <div class="order-item-col">
     <a routerLink="/product/{{product.id}}">
-      <img src="{{product.photo || 'assets/img/no-image-icon-res.png'}}">
+      <img src="{{product.photo.length ? product.photo[0].content : 'assets/img/no-image-icon-res.png'}}">
     </a>
   </div>
 

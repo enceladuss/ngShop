@@ -1,45 +1,52 @@
-<div class="container dashboard-page">
+<div class="dashboard-page">
   <h1>Products dashboard</h1>
 
-  <div class="form-control">
+  <div class="form-control" *ngIf="products.length">
     <input type="text" placeholder="Find a product" [(ngModel)]="productName">
   </div>
 
-  <table *ngIf="products.length; else noProducts">
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Date & time</th>
-      <th>Link</th>
-      <th>Delete</th>
-    </tr>
-    </thead>
+  <div class="table-wrap" *ngIf="(products | search : productName ) as result">
+    <table *ngIf="result.length">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Sold count</th>
+        <th>Date & time</th>
+        <th>Link</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
 
-    <tbody>
-    <tr *ngFor="let product of products | search : productName; let idx = index">
-      <td>{{ idx + 1 }}</td>
-      <td><a target="_blank" routerLink="/product/{{product.id}}">{{ product.title }}</a></td>
-      <td>{{ product.price }}</td>
-      <td>{{ product.date | date:'dd.MM.yyyy HH:mm' }}</td>
-      <td>
-        <a class="btn btn-primary" routerLink="/admin/product/{{product.id}}/edit">Edit</a>
-      </td>
+      <tbody>
+      <tr *ngFor="let product of result; let idx = index">
+        <td>{{ idx + 1 }}</td>
+        <td><a target="_blank" routerLink="/product/{{product.id}}">{{ product.title }}</a></td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.sold }}</td>
+        <td>{{ product.date | date:'dd.MM.yyyy HH:mm' }}</td>
+        <td>
+          <a class="btn btn-primary" routerLink="/admin/product/{{product.id}}/edit">Edit</a>
+        </td>
 
-      <td>
-        <button class="btn btn-danger" (click)="remove(product.id)">
-          Delete
-        </button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+        <td>
+          <button class="btn btn-danger" (click)="remove(product.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
 
-  <ng-template #noProducts>
-    <div class="error-text-wrap">
-      <span>There are no products currently.</span>
-      <a class="btn btn-success" routerLink="/admin/add">Add product</a>
+    <div class="search-no-results" *ngIf="products.length && !result.length">
+      <span>No products was found.</span>
+      Try to change your search query.
     </div>
-  </ng-template>
+  </div>
+
+  <div class="error-text-wrap" *ngIf="noProducts">
+    <span>There are no products currently.</span>
+    <a class="btn btn-success" routerLink="/admin/add">Add product</a>
+  </div>
 </div>

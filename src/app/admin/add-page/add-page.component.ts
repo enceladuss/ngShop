@@ -12,6 +12,7 @@ export class AddPageComponent implements OnInit {
   form: FormGroup;
   submitted = false;
   productID;
+  postMultimedias = [];
 
   constructor(
     private productService: ProductService
@@ -25,18 +26,41 @@ export class AddPageComponent implements OnInit {
       // photo: new FormControl(null, Validators.required),
       info: new FormControl(null, Validators.required),
       price: new FormControl(null, Validators.required),
-      sold: new FormControl(null, Validators.required)
+      sold: new FormControl(null)
     });
   }
 
   onSelect(event) {
-    console.log(this.files);
+    this.postMultimedias = [];
     this.files.push(...event.addedFiles);
+    if (this.files && this.files[0]) {
+      for (let i = 0; i < this.files.length; i++) {
+        this.fileToBase64(this.files[i])
+          .then(result => {
+            this.postMultimedias.push({
+              name: this.files[i].name, content:
+              result
+            });
+            console.log(this.postMultimedias)
+          });
+      }
+    }
   }
 
+  fileToBase64 = (file: File): Promise<string> => {
+    return new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result.toString());
+      reader.onerror = error => reject(error);
+    });
+  };
+
   onRemove(event) {
-    console.log(event);
-    this.files.splice(this.files.indexOf(event), 1);
+    const position = this.files.indexOf(event);
+    this.postMultimedias.splice(position, 1);
+    this.files.splice(position, 1);
+    console.log(this.postMultimedias)
   }
 
   numberOnly(event): boolean {
@@ -57,7 +81,7 @@ export class AddPageComponent implements OnInit {
     const product = {
       type: this.form.value.type,
       title: this.form.value.title,
-      photo: this.files,
+      photo: this.postMultimedias,
       info: this.form.value.info,
       price: this.form.value.price,
       sold: this.form.value.sold,
