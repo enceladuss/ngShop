@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {environment} from 'src/environments/environment';
 import {catchError, tap} from 'rxjs/operators';
@@ -11,12 +11,13 @@ export class AuthService {
 
   public error$: Subject<string> = new Subject<string>();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
-  login( User ) {
+  login(User) {
     return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, User)
       .pipe(tap(this.setToken),
-      catchError(this.handleError.bind(this))
+        catchError(this.handleError.bind(this))
       );
   }
 
@@ -38,18 +39,18 @@ export class AuthService {
     return throwError(error);
   }
 
-  private setToken (response) {
-    if( response ) {
-      const expData = new Date( new Date().getTime() + +response.expiresIn * 1000);
+  private setToken(response) {
+    if (response) {
+      const expData = new Date(new Date().getTime() + +response.expiresIn * 1000);
       localStorage.setItem('fb-token', response.idToken);
       localStorage.setItem('fb-token-exp', expData.toString());
-    }else {
+    } else {
       localStorage.clear();
     }
   }
 
-  get token () {
-    const expDate = new Date (localStorage.getItem('fb-token-exp'));
+  get token() {
+    const expDate = new Date(localStorage.getItem('fb-token-exp'));
     if (new Date >= expDate) {
       return null;
     }

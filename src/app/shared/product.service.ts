@@ -13,7 +13,7 @@ export class ProductService {
   constructor(public http: HttpClient) {
   }
 
-  create(product) {
+  create(product): Observable<any> {
     return this.http.post(`${environment.fbDbUrl}/products.json`, product).pipe(map((res: FbResponse) => {
         return {
           ...product,
@@ -39,7 +39,7 @@ export class ProductService {
 
   // TODO: ASK ABOUT PROCESSING ERRORS
 
-  getById(id) {
+  getById(id): Observable<any> {
     return this.http.get(`${environment.fbDbUrl}/products/${id}.json`)
       .pipe(map((res: Product) => {
           if (!res) {
@@ -58,11 +58,11 @@ export class ProductService {
       );
   }
 
-  remove(id) {
+  remove(id): Observable<any> {
     return this.http.delete(`${environment.fbDbUrl}/products/${id}.json`);
   }
 
-  update(product: Product) {
+  update(product: Product): Observable<any> {
     return this.http.patch(`${environment.fbDbUrl}/products/${product.id}.json`, product);
   }
 }

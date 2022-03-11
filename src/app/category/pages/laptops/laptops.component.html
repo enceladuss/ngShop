@@ -1,0 +1,41 @@
+<div class="category-page">
+
+  <app-category-filter
+    [categoryName]="'laptops'"
+    [products]="products"
+    (productName)="productName = $event"
+  ></app-category-filter>
+
+  <app-category-filter-result
+    [categoryName]="'laptops'"
+    [productName]="productName"
+    (onProducts)="products = $event"
+  ></app-category-filter-result>
+
+<!--  <section class="container loader-parent" *ngIf="(products | productSearch : productName) as result" #loader>-->
+
+<!--&lt;!&ndash;    <div class="loader-wrap">&ndash;&gt;-->
+<!--&lt;!&ndash;      <img class="loader-svg" src='assets/img/loader.svg'>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+
+<!--    <div class="dashboard" *ngIf="result.length; else noResultTemplate">-->
+<!--      <app-product *ngFor="let product of result" class="product-card" [product]="product"></app-product>-->
+<!--    </div>-->
+
+<!--&lt;!&ndash;    <div class="search-no-results" *ngIf="!result.length && !loading">&ndash;&gt;-->
+<!--&lt;!&ndash;      <span>No products was found.</span>&ndash;&gt;-->
+<!--&lt;!&ndash;      Try to change your search query.&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <div class="no-products text-center" *ngIf="noProducts">&ndash;&gt;-->
+<!--&lt;!&ndash;      <span>There are no products in this category right now.</span>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+
+<!--    <ng-template #noResultTemplate>-->
+<!--      <app-no-result [message]="'There are no products in this category right now.'"></app-no-result>-->
+<!--    </ng-template>-->
+
+<!--  </section>-->
+
+</div>
+

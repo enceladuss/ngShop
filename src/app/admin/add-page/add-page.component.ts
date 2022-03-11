@@ -30,7 +30,7 @@ export class AddPageComponent implements OnInit {
     });
   }
 
-  onSelect(event) {
+  onSelect(event): void {
     this.postMultimedias = [];
     this.files.push(...event.addedFiles);
     if (this.files && this.files[0]) {
@@ -41,7 +41,6 @@ export class AddPageComponent implements OnInit {
               name: this.files[i].name, content:
               result
             });
-            console.log(this.postMultimedias)
           });
       }
     }
@@ -56,11 +55,10 @@ export class AddPageComponent implements OnInit {
     });
   };
 
-  onRemove(event) {
+  onRemove(event): void {
     const position = this.files.indexOf(event);
     this.postMultimedias.splice(position, 1);
     this.files.splice(position, 1);
-    console.log(this.postMultimedias)
   }
 
   numberOnly(event): boolean {
@@ -71,7 +69,7 @@ export class AddPageComponent implements OnInit {
     return true;
   }
 
-  submit() {
+  submit(): void {
     this.submitted = true;
     if (this.form.invalid) {
       this.submitted = false;
@@ -89,7 +87,6 @@ export class AddPageComponent implements OnInit {
     };
 
     this.submitted = false;
-    console.log(product);
     window.scrollTo({top: 0, behavior: 'smooth'});
     this.productService.create(product)
       .subscribe((res) => {

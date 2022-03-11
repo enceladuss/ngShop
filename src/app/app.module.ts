@@ -11,16 +11,18 @@ import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {QuillModule} from 'ngx-quill';
 import {AuthInterceptor} from './shared/auth.interceptor';
-import {ProductComponent} from './product/product.component';
 import {CategoryPageComponent} from './category-page/category-page.component';
 import {ProductSearchPipe} from './shared/productSearch.pipe';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CartProductComponent} from './cart-product/cart-product.component';
 import {CheckoutPageComponent} from './checkout-page/checkout-page.component';
 import {OrderGratitudeComponent} from './order-gratitude/order-gratitude.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCarouselModule} from '@ngmodule/material-carousel';
-
+import {MainHeaderModule} from './shared/main-header/main-header.module';
+import {MainFooterModule} from './shared/main-footer/main-footer.module';
+import {ProductModule} from './product/product.module';
+import {LoaderModule} from './shared/loader/loader.module';
 
 
 @NgModule({
@@ -31,23 +33,26 @@ import {MatCarouselModule} from '@ngmodule/material-carousel';
     MainPageComponent,
     ProductPageComponent,
     NotFoundPageComponent,
-    ProductComponent,
     CategoryPageComponent,
     ProductSearchPipe,
     CartProductComponent,
     CheckoutPageComponent,
     OrderGratitudeComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    QuillModule.forRoot(),
-    FormsModule,
-    ReactiveFormsModule,
-    NoopAnimationsModule,
-    MatCarouselModule.forRoot()
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        QuillModule.forRoot(),
+        FormsModule,
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        MatCarouselModule.forRoot(),
+        MainHeaderModule,
+        MainFooterModule,
+        ProductModule,
+        LoaderModule
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
@@ -55,7 +60,9 @@ import {MatCarouselModule} from '@ngmodule/material-carousel';
       useClass: AuthInterceptor
     }
   ],
-  exports: [],
+  exports: [
+    ProductSearchPipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

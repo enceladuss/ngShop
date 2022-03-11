@@ -1,4 +1,4 @@
-<div *ngIf="form">
+<div class="edit-page" *ngIf="form">
   <form [formGroup]="form" (ngSubmit)="submit()" class="admin-login-form">
     <h2 class="text-center">Edit product</h2>
 
@@ -29,7 +29,6 @@
 
     <div class="form-control">
       <label>Product Photo</label>
-      <!--    <quill-editor formControlName="photo"></quill-editor>-->
       <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
         <ngx-dropzone-label>
           <div class="dropzone-text">
@@ -38,7 +37,6 @@
         </ngx-dropzone-label>
         <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"
                                     [removable]="true" (removed)="onRemove(f)">
-          <!--        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>-->
         </ngx-dropzone-image-preview>
       </div>
     </div>

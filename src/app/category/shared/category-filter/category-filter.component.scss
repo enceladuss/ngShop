@@ -1,0 +1,39 @@
+.category-filter-wrap {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+
+  .form-control {
+    margin-bottom: 0;
+  }
+
+  .search-control {
+    margin-right: 20px;
+    flex: 1;
+  }
+}
+
+@media (max-width: 576px) {
+  .category-filter-wrap {
+    margin-top: 10px;
+    .form-control{
+      width: 100%;
+      max-width: calc(50% - 10px);
+    }
+  }
+}
+
+@media (max-width: 340px) {
+  .category-filter-wrap {
+    flex-wrap: wrap;
+
+    .search-control {
+      margin-bottom: 5px;
+    }
+
+    .form-control{
+      max-width: 100%;
+      margin-right: 0;
+    }
+  }
+}

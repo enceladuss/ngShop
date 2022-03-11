@@ -1,0 +1,24 @@
+<div class="loader-inline-wrap" *ngIf="loading">
+  <app-loader [ngClass]="{'active-loader': loading}"></app-loader>
+</div>
+
+<section class="container" *ngIf="(products | productSearch : productName) as result">
+
+  <div class="dashboard" *ngIf="result.length">
+    <app-product *ngFor="let product of result" class="product-card" [product]="product"></app-product>
+  </div>
+
+  <!--    <div class="search-no-results" *ngIf="!result.length && !loading">-->
+  <!--      <span>No products was found.</span>-->
+  <!--      Try to change your search query.-->
+  <!--    </div>-->
+
+  <!--    <div class="no-products text-center" *ngIf="noProducts">-->
+  <!--      <span>There are no products in this category right now.</span>-->
+  <!--    </div>-->
+
+  <ng-container *ngIf="!loading && !result.length || noProducts">
+    <app-no-result [message]="errorMessage"></app-no-result>
+  </ng-container>
+
+</section>

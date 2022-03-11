@@ -124,7 +124,6 @@ export class CartService {
     } else {
       console.log('No products in cart');
     }
-    ;
 
     if (localStorage.getItem('recentOrderId')) {
       localStorage.removeItem('recentOrderId');

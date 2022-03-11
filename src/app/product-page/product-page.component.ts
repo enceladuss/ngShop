@@ -56,13 +56,13 @@ export class ProductPageComponent implements OnInit {
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.slider) {
       this.slider.destroy();
     }
   }
 
-  addToCart(product) {
+  addToCart(product): void {
     this.cartService.addProductToCart(product);
 
     // TODO: refactor modal logic to more efficient angular approach

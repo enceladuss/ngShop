@@ -76,7 +76,7 @@ export class EditPageComponent implements OnInit {
   }
 
 
-  onSelect(event) {
+  onSelect(event): void {
     this.postMultimedias = [];
     this.files.push(...event.addedFiles);
     if (this.files && this.files[0]) {
@@ -101,7 +101,7 @@ export class EditPageComponent implements OnInit {
     });
   };
 
-  onRemove(event) {
+  onRemove(event): void {
     const position = this.files.indexOf(event);
     this.postMultimedias.splice(position, 1);
     this.files.splice(position, 1);

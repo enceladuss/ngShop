@@ -11,4 +11,5 @@ export interface Product {
   price: string;
   date: Date;
   quantity?: any;
+  sold?: string;
 }

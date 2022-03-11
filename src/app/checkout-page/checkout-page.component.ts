@@ -60,7 +60,7 @@ export class CheckoutPageComponent implements OnInit {
 
   }
 
-  submit() {
+  submit(): void {
 
     this.submitted = true;
     if (this.form.invalid) {

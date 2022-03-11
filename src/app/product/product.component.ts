@@ -18,7 +18,7 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addToCart(product) {
+  addToCart(product): void {
     this.cartService.addProductToCart(product);
     // TODO: refactor modal logic to more efficient angular approach
     document.querySelector('.added-to-cart-bg').classList.add('active');

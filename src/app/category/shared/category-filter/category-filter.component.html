@@ -1,0 +1,26 @@
+<section class="container category-head-wrap">
+
+  <h1>Category: {{categoryName}}</h1>
+
+  <div *ngIf="products.length" class="category-filter-wrap">
+    <div class="form-control search-control">
+      <input type="text" placeholder="Find a product" (input)="productName.emit($event.target.value)">
+    </div>
+
+    <div class="form-control">
+      <select (change)="selectChange($event.target.value)">
+        <option value="popular">Popular</option>
+        <option value="newest">Newest</option>
+        <option value="lowPrice">Price: Low to High</option>
+        <option value="highPrice">Price: High to Low</option>
+      </select>
+    </div>
+  </div>
+
+</section>
+
+<!--<div class="container active-loader loader-parent" *ngIf="loading">-->
+<!--  <div class="loader-wrap">-->
+<!--    <img class="loader-svg" src='assets/img/loader.svg'>-->
+<!--  </div>-->
+<!--</div>-->

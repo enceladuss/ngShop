@@ -1,0 +1,16 @@
+<div class="category-page">
+  <app-category-filter
+    [categoryName]="'phones'"
+    [products]="products"
+    (productName)="productName = $event"
+  ></app-category-filter>
+
+<!--  <app-category-filter-result [productType]="'phones'" [productName]="productName"></app-category-filter-result>-->
+
+  <app-category-filter-result
+    [categoryName]="'phones'"
+    [productName]="productName"
+    (onProducts)="products = $event"
+  ></app-category-filter-result>
+</div>
+

@@ -41,7 +41,7 @@ export class DashboardPageComponent implements OnInit {
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.pSub) {
       this.pSub.unsubscribe();
     }

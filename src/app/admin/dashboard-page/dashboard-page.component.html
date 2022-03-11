@@ -1,11 +1,11 @@
 <div class="dashboard-page">
   <h1>Products dashboard</h1>
 
-  <div class="form-control" *ngIf="products.length">
+  <section class="form-control" *ngIf="products.length">
     <input type="text" placeholder="Find a product" [(ngModel)]="productName">
-  </div>
+  </section>
 
-  <div class="table-wrap" *ngIf="(products | search : productName ) as result">
+  <section class="table-wrap" *ngIf="(products | search : productName ) as result">
     <table *ngIf="result.length">
       <thead>
       <tr>
@@ -43,7 +43,7 @@
       <span>No products was found.</span>
       Try to change your search query.
     </div>
-  </div>
+  </section>
 
   <div class="error-text-wrap" *ngIf="noProducts">
     <span>There are no products currently.</span>

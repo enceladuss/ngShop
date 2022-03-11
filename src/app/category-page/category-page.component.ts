@@ -24,14 +24,6 @@ export class CategoryPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.category = this.route.snapshot.paramMap.get('id');
-      if (this.category === 'phones' || this.category === 'tablets' || this.category === 'laptops') {
-        return;
-      } else {
-        this.router.navigate(['/404']);
-      }
-    });
 
     this.productService.getAll()
       .subscribe(data => {

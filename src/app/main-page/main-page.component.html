@@ -32,9 +32,7 @@
   <h2>Recently added products:</h2>
 
   <div class="container active-loader loader-parent" *ngIf="loading">
-    <div class="loader-wrap">
-      <img class="loader-svg" src='assets/img/loader.svg'>
-    </div>
+    <app-loader [ngClass]="{'active-loader': loading}"></app-loader>
   </div>
 
   <section *ngIf="latestProducts" class="dashboard">

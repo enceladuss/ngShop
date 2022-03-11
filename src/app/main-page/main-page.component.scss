@@ -128,10 +128,13 @@ h2 {
         transform: none;
 
         img {
-          position: static;
+          position: relative;
+          left: auto;
+          top: auto;
           transform: none;
           width: 100%;
           height: auto;
+          z-index: -1;
         }
       }
     }

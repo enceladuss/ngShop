@@ -1,5 +1,5 @@
 /* tslint:disable:radix */
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
 import {Product} from '../shared/interfaces';
 import {CartService} from '../shared/cart.service';
 
@@ -8,7 +8,7 @@ import {CartService} from '../shared/cart.service';
   templateUrl: './cart-page.component.html',
   styleUrls: ['./cart-page.component.scss']
 })
-export class CartPageComponent implements OnInit {
+export class CartPageComponent implements OnInit, AfterViewInit  {
   cartProducts: Product[] = [];
   totalPrice = 0;
   noCartProducts = false;
@@ -27,7 +27,6 @@ export class CartPageComponent implements OnInit {
     }
   }
 
-  // TODO: ASK ABOUT ERROR
   ngAfterViewInit(): void {
     if (this.cartProducts) {
       this.calculatePrice();
