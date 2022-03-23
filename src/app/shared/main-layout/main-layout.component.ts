@@ -23,22 +23,6 @@ export class MainLayoutComponent implements OnInit {
     this.cartService.componentMethodCalled$.subscribe((cartProductsQuantity) => {
       this.cartProductsQuantity = cartProductsQuantity;
     });
-
-    // TODO: refactor modal logic to more efficient angular approach
-
-    const closeButtons = document.querySelectorAll('.close-modal');
-    const modalBackgrounds = document.querySelectorAll('.modal-bg');
-    const modalsElements = document.querySelectorAll('.modal');
-
-    closeButtons.forEach(el => el.addEventListener('click', event => {
-      modalBackgrounds.forEach(elem => {
-        elem.classList.remove('active');
-      });
-
-      modalsElements.forEach(elem => {
-        elem.classList.remove('active');
-      });
-    }));
   }
 
 }

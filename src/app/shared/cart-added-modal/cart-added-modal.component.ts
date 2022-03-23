@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-cart-added-modal',
@@ -6,11 +6,29 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
   styleUrls: ['./cart-added-modal.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class CartAddedModalComponent implements OnInit {
+export class CartAddedModalComponent {
 
-  constructor() { }
+  constructor() {
+  }
 
-  ngOnInit(): void {
+  public openModal(): void {
+    document.querySelectorAll('.modal-bg').forEach(elem => {
+      elem.classList.add('active');
+    });
+
+    document.querySelectorAll('.modal').forEach(elem => {
+      elem.classList.add('active');
+    });
+  }
+
+  public closeModal(): void {
+    document.querySelectorAll('.modal-bg').forEach(elem => {
+      elem.classList.remove('active');
+    });
+
+    document.querySelectorAll('.modal').forEach(elem => {
+      elem.classList.remove('active');
+    });
   }
 
 }

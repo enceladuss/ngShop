@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ProductService} from '../shared/product.service';
 import {CartService} from '../shared/cart.service';
+import {CartAddedModalComponent} from '../shared/cart-added-modal/cart-added-modal.component';
 
 @Component({
   selector: 'app-product',
@@ -13,15 +14,15 @@ export class ProductComponent implements OnInit {
 
   constructor(private productService: ProductService,
               private cartService: CartService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
   }
 
   addToCart(product): void {
     this.cartService.addProductToCart(product);
-    // TODO: refactor modal logic to more efficient angular approach
-    document.querySelector('.added-to-cart-bg').classList.add('active');
-    document.querySelector('.added-to-cart-modal').classList.add('active');
+    const firstComp = new CartAddedModalComponent();
+    firstComp.openModal();
   }
 }

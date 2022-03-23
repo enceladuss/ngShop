@@ -23,7 +23,7 @@ import {MainHeaderModule} from './shared/main-header/main-header.module';
 import {MainFooterModule} from './shared/main-footer/main-footer.module';
 import {ProductModule} from './product/product.module';
 import {LoaderModule} from './shared/loader/loader.module';
-
+import {CartAddedModalModule} from './shared/cart-added-modal/cart-added-modal.module';
 
 @NgModule({
   declarations: [
@@ -51,7 +51,8 @@ import {LoaderModule} from './shared/loader/loader.module';
         MainHeaderModule,
         MainFooterModule,
         ProductModule,
-        LoaderModule
+        LoaderModule,
+        CartAddedModalModule
     ],
   providers: [
     {

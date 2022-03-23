@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef, ViewChild} from '@angular/core';
+import {Component, OnInit, ElementRef, ViewChild, OnDestroy} from '@angular/core';
 import {ProductService} from '../shared/product.service';
 import {ActivatedRoute} from '@angular/router';
 import {CartService} from '../shared/cart.service';
@@ -9,7 +9,7 @@ import KeenSlider from 'keen-slider';
   templateUrl: './product-page.component.html',
   styleUrls: ['./product-page.component.scss', '../../../node_modules/keen-slider/keen-slider.min.css']
 })
-export class ProductPageComponent implements OnInit {
+export class ProductPageComponent implements OnInit, OnDestroy {
   @ViewChild('sliderRef') sliderRef: ElementRef<HTMLElement>;
 
   product;
